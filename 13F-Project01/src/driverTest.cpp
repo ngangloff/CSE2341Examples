@@ -14,15 +14,34 @@
 
 using namespace std;
 
-using namespace std;
-
-void makeSampleData(stringstream& sample)
+/**
+ * makeSampleData
+ *
+ * Method to initialize a stringstream object with some
+ * sample data to mimic what would be in an input file.
+ */
+void makeSampleData(ostream& sample)
 {
 	sample << "The Cowboys" << endl
 			<< "3" << endl
 			<< "1 Bob\n2 Sally\n3Sam\n";
+}
 
-
+/**
+ * initializeTeam
+ *
+ * Create some player objects and put them in the Team object
+ * that is passed by reference
+ */
+void initializeTeam1(Team& t)
+{
+	Player p1("Bob", 1);
+	Player p2("Sally", 2);
+	Player p3("Sam", 3);
+	t.setTeamName("The Cowboys");
+	t.addPlayer(p1);
+	t.addPlayer(p2);
+	t.addPlayer(p3);
 }
 
 int main ()
@@ -30,17 +49,11 @@ int main ()
 	stringstream sampleData;
 	makeSampleData(sampleData);
 
-	Player p1("Bob", 1);
-	Player p2("Sally", 2);
-	Player p3("Sam", 3);
+	Team t1;
+	initializeTeam1(t1);
+	t1.print(cout);
 
-	Team t;
-	t.setTeamName("The Cowboys");
-	t.addPlayer(p1);
-	t.addPlayer(p2);
-	t.addPlayer(p3);
 
-	t.print(cout);
 
 
 	return 0;

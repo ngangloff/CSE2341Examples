@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-void SimpleTest1() {
+void simpleTest1() {
 	cout << "TestClass tc;" << endl;
 	TestClass tc;
 	cout << endl << "TestClass* tcPtr, *tcPtr2;" << endl;
@@ -26,7 +26,7 @@ void SimpleTest1() {
 	delete tcPtr2;
 }
 
-void SimpleTest2() {
+void simpleTest2() {
 	//SimpleTest1();
 	TestClass* temp;
 	temp = new TestClass[3];
@@ -41,11 +41,22 @@ void SimpleTest2() {
 	cout << "After Deletion" << endl;
 }
 
+TestClass* someOtherFunction(TestClass* myObj) {
+	myObj = new TestClass[2];
+	myObj[0];
+	return myObj;
+}
+
 int main ()
 {
-	//SimpleTest1();
-	SimpleTest2();
-	return 0;
+	simpleTest1();
+	//simpleTest2();
+
+	TestClass* myObj;
+	myObj = someOtherFunction(myObj);
+	delete[] myObj;
+
+	return (0);
 }
 
 

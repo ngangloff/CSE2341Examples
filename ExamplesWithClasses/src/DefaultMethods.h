@@ -24,7 +24,7 @@ public:
 	TestClass& operator= (const TestClass& tc)
 	{
 		cout << "Assignment Operator" << endl;
-		return *this;
+		return (*this);
 	}
 
 	~TestClass()

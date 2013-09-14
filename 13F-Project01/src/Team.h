@@ -3,6 +3,8 @@
  *
  *  Created on: Sep 14, 2013
  *      Author: mark
+ *
+ *  Team represents a collection of players in laser-tag
  */
 
 #include <string>

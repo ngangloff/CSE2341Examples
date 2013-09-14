@@ -2,7 +2,9 @@
  * Player.h
  *
  *  Created on: Sep 14, 2013
- *      Author: mark
+ *      Author: Mark Fontenot
+ *
+ *  Player represents a player on a Laser Tag team.
  */
 
 #include <string>

@@ -23,8 +23,6 @@ private:
 	int timeStamp;
 	TaggedLocation location;
 
-	//this is a comment
-
 };
 
 #endif /* TAG_H_ */

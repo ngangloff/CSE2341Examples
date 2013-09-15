@@ -13,9 +13,23 @@
 class Tag
 {
 public:
-	Tag();
-	virtual ~Tag();
 
+	Tag();
+	Tag(int, int, int, TaggedLocation);
+
+	virtual ~Tag() {}
+
+	void setTagger(int);
+	void setTagged(int);
+	void setTimeStamp(int);
+	void setTaggedLocation(TaggedLocation);
+
+	int getTagger();
+	int getTagged();
+	int getTimeStamp();
+	TaggedLocation getTaggedLocation();
+
+	virtual int getPoints() = 0;
 
 private:
 	int tagger;
@@ -24,5 +38,58 @@ private:
 	TaggedLocation location;
 
 };
+
+class ShoulderTag : public Tag
+{
+public:
+	ShoulderTag(int tag, int tagd, int time, TaggedLocation loc):
+		Tag(tag, tagd, time, loc) {}
+
+	virtual int getPoints()
+	{
+		return 10;
+	}
+};
+
+class LaserGunTag : public Tag
+{
+public:
+
+	LaserGunTag(int tag, int tagd, int time, TaggedLocation loc):
+		Tag(tag, tagd, time, loc) {}
+
+	virtual int getPoints()
+	{
+		return 15;
+	}
+};
+
+class BackTag : public Tag
+{
+public:
+
+	BackTag(int tag, int tagd, int time, TaggedLocation loc):
+		Tag(tag, tagd, time, loc) {}
+
+	virtual int getPoints()
+	{
+		return 5;
+	}
+};
+
+class ChestTag : public Tag
+{
+public:
+	ChestTag(int tag, int tagd, int time, TaggedLocation loc):
+		Tag(tag, tagd, time, loc) {}
+
+	virtual int getPoints()
+	{
+		return 8;
+	}
+};
+
+
+
 
 #endif /* TAG_H_ */

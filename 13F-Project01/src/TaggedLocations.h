@@ -8,7 +8,7 @@
 #ifndef TAGGEDLOCATIONS_H_
 #define TAGGEDLOCATIONS_H_
 
-enum TaggedLocation{back, chest, shoulder, laserGun};
+enum TaggedLocation{UNINITIALIZED, BACK, CHEST, SHOULDER, LASERGUN};
 
 
 #endif /* TAGGEDLOCATIONS_H_ */

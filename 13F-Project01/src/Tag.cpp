@@ -6,15 +6,57 @@
  */
 
 #include "Tag.h"
+#include "TaggedLocations.h"
+
+
+Tag::Tag(int taggerParam, int taggedParam, int time, TaggedLocation loc)
+		:tagger(taggerParam), tagged(taggedParam), timeStamp(time), location(loc)
+{
+}
 
 Tag::Tag()
 {
-	// TODO Auto-generated constructor stub
-
+	tagger = tagged = timeStamp = -1;
+	location = UNINITIALIZED;
 }
 
-Tag::~Tag()
+void Tag::setTagger(int taggerParam)
 {
-	// TODO Auto-generated destructor stub
+	tagger = taggerParam;
+}
+
+void Tag::setTagged(int taggedParam)
+{
+	tagged = taggedParam;
+}
+
+void Tag::setTimeStamp(int time)
+{
+	timeStamp = time;
+}
+
+void Tag::setTaggedLocation(TaggedLocation t)
+{
+	location = t;
+}
+
+int Tag::getTagger()
+{
+	return tagger;
+}
+
+int Tag::getTagged()
+{
+	return tagged;
+}
+
+int Tag::getTimeStamp()
+{
+	return timeStamp;
+}
+
+TaggedLocation Tag::getTaggedLocation()
+{
+	return location;
 }
 

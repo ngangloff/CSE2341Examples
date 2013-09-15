@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Team.h"
+#include "Match.h"
 #include <sstream>
 #include <string>
 #include <iostream>
@@ -20,11 +21,20 @@ using namespace std;
  * Method to initialize a stringstream object with some
  * sample data to mimic what would be in an input file.
  */
-void makeSampleData(ostream& sample)
+void makeSampleData(ostream& team1, ostream& sampleMatch)
 {
-	sample << "The Cowboys" << endl
+	team1 << "The Cowboys" << endl
 			<< "3" << endl
 			<< "1 Bob\n2 Sally\n3Sam\n";
+
+	sampleMatch << 6 << endl
+			<< 6 << " " << 1 << " " <<  8388 << " " << 2 << endl
+			<< 3 << " " << 5 << " " <<  10111 << " " <<  1 << endl
+			<< 4 << " " << 2 << " " <<  12123 << " " <<  3 << endl
+			<< 2 << " " << 4 << " " <<  13131 << " " <<  1 << endl
+			<< 2 << " " << 5 << " " <<  14155 << " " <<  2 << endl
+			<< 3 << " " << 5 << " " <<  15555 << " " <<  4 << endl;
+
 }
 
 /**
@@ -46,15 +56,18 @@ void initializeTeam1(Team& t)
 
 int main ()
 {
-	stringstream sampleData;
-	makeSampleData(sampleData);
+	stringstream sampleteam1;
+	stringstream sampleteam2;
+	stringstream sampleMatch;
+	makeSampleData(sampleteam1, sampleMatch);
 
 	Team t1;
 	initializeTeam1(t1);
 	t1.print(cout);
 
-
-
+	Match m;
+	m.loadMatch(sampleMatch);
+	m.printMatch(cout);
 
 	return 0;
 }

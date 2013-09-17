@@ -23,7 +23,7 @@ void Player::setName(const string& newName)
 	playerName = newName;
 }
 
-string Player::getName()
+string Player::getName() const
 {
 	return playerName;
 }
@@ -33,7 +33,7 @@ void Player::setPlayerId(int id)
 	playerId = id;
 }
 
-int Player::getPlayerId()
+int Player::getPlayerId() const
 {
 	return playerId;
 }

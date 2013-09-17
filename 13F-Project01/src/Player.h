@@ -20,10 +20,10 @@ public:
 	~Player();
 
 	void setName(const string& newName);
-	string getName();
+	string getName() const;
 
 	void setPlayerId(int);
-	int getPlayerId();
+	int getPlayerId() const;
 
 private:
 	int playerId;

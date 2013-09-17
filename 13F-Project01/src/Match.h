@@ -21,7 +21,10 @@ public:
 	void loadMatch(istream& in);
 	void printMatch(ostream& out);
 
+	void outputLowVerbosity(ostream& out,
+			const Team& t1, const Team& t2);
 
+	int getScoreForTeam(const Team& team);
 
 private:
 	vector<Tag*> tags;

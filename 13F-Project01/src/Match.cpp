@@ -58,3 +58,34 @@ void Match::printMatch (ostream& out)
 		out << (*it)->getTagger() << " tagged " << (*it)->getTagged()
 		<< " for " << (*it)->getPoints() << " points!" << endl;
 }
+
+int Match::getScoreForTeam(const Team& team)
+{
+	vector<Tag*>::iterator it;
+	int score = 0;
+	for (it = tags.begin(); it != tags.end(); ++it)
+	{
+		int tagger = (*it)->getTagger();
+		if(team.isTeamMember( tagger ))
+			score += (*it)->getPoints();
+	}
+	return score;
+}
+
+void Match::outputLowVerbosity(ostream& out,
+		const Team& t1, const Team& t2)
+{
+	int team1score = this->getScoreForTeam(t1);
+	int team2score = this->getScoreForTeam(t2);
+
+	out << t1.getTeamName() << ": " << team1score << endl;
+	out << t2.getTeamName() << ": " << team2score << endl;
+
+	out << "Overall Winners: ";
+	if(team1score > team2score)
+		out << t1.getTeamName() << endl;
+	else if (team1score < team2score)
+		out << t2.getTeamName() << endl;
+	else
+		out << "Tie" << endl;
+}

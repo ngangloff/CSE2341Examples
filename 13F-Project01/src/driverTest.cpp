@@ -21,11 +21,16 @@ using namespace std;
  * Method to initialize a stringstream object with some
  * sample data to mimic what would be in an input file.
  */
-void makeSampleData(ostream& team1, ostream& sampleMatch)
+void makeSampleData(ostream& team1, ostream& team2, ostream& sampleMatch)
 {
 	team1 << "The Cowboys" << endl
 			<< "3" << endl
 			<< "1 Bob\n2 Sally\n3Sam\n";
+
+	team2 << "The Sharks" << endl
+			<< "3" << endl
+			<<"4 Jack\n5 Jill\n6 Kenny\n";
+
 
 	sampleMatch << 6 << endl
 			<< 6 << " " << 1 << " " <<  8388 << " " << 2 << endl
@@ -59,15 +64,25 @@ int main ()
 	stringstream sampleteam1;
 	stringstream sampleteam2;
 	stringstream sampleMatch;
-	makeSampleData(sampleteam1, sampleMatch);
+	makeSampleData(sampleteam1, sampleteam2, sampleMatch);
 
 	Team t1;
-	initializeTeam1(t1);
+	t1.initializeTeam(sampleteam1);
 	t1.print(cout);
+
+	Team t2;
+	t2.initializeTeam(sampleteam2);
+	t2.print(cout);
 
 	Match m;
 	m.loadMatch(sampleMatch);
 	m.printMatch(cout);
+
+	cout << "Low Verbosity" << endl;
+	cout << "---------------------------------------" << endl;
+	m.outputLowVerbosity(cout, t1, t2);
+	cout << "---------------------------------------" << endl;
+
 
 	return 0;
 }

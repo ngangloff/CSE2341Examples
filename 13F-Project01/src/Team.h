@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 #include <ostream>
+#include <istream>
+#include <set>
 #include "Player.h"
 using namespace std;
 
@@ -21,13 +23,27 @@ public:
 	Team();
 	virtual ~Team();
 
+	void initializeTeam(istream&);
+
 	void setTeamName(const string& name);
-	string getTeamName();
+	string getTeamName() const;
 
 	void addPlayer(const Player&);
-	string getPlayerNameById(int id);
+	string getPlayerNameById(int id) const;
 
 	void print(ostream&);
+
+	bool isTeamMember(int id) const
+	{
+		for(vector<Player>::const_iterator it = players.begin();
+				it != players.end();
+				++it)
+		{
+			if(it->getPlayerId() == id)
+				return true;
+		}
+		return false;
+	}
 
 private:
 	string name;

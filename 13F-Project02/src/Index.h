@@ -1,5 +1,4 @@
 #include <cstring>
-//#include <cstdio>
 #include <iostream>
 
 using namespace std;
@@ -12,7 +11,7 @@ using namespace std;
 #ifndef INDEX_H
 #define INDEX_H
 
-class MyIndex
+class Index
 {
 private:
 
@@ -29,7 +28,7 @@ private:
 	void resize();
 
 	//I don't think I ever want to copy one of these
-	MyIndex(const MyIndex&);
+	Index(const Index&);
 
 	/**
 	 * Sort the words in the index
@@ -40,13 +39,13 @@ private:
 
 public:
 
-	MyIndex(StopWordList& swlarg);
+	Index(StopWordList& swlarg);
 
-	MyIndex(StopWordList& swlarg, CategoryMap& cm);
+	Index(StopWordList& swlarg, CategoryMap& cm);
 
-	MyIndex();
+	Index();
 
-	~MyIndex();
+	~Index();
 
 	/**
 	 * adds a word to the index at a given page number

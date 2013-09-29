@@ -25,7 +25,7 @@ public:
 
 	bool isFileOpen();
 
-	void parseBook(MyIndex& idx);
+	void parseBook(Index& idx);
 
 	int getPageNumber(char* str);
 

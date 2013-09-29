@@ -27,7 +27,7 @@ bool BookParser::isFileOpen()
 	return file.is_open();
 }
 
-void BookParser::parseBook(MyIndex& idx)
+void BookParser::parseBook(Index& idx)
 {
 	if (DEBUGl4)
 		cout << "Parsing Book in file " << fileName << endl;

@@ -41,7 +41,7 @@ void testLevel4(int argc, char** args)
     if(hfp.isFileOpen())
         hfp.parseFile();
 
-    MyIndex i(hfp.getStopWordList(), hfp.getCategoryMap());
+    Index i(hfp.getStopWordList(), hfp.getCategoryMap());
     BookParser book(args[1]);
     book.parseBook(i);
 
@@ -57,7 +57,7 @@ void testLevel3()
     if(hfp.isFileOpen())
         hfp.parseFile();
 
-    MyIndex i(hfp.getStopWordList(), hfp.getCategoryMap());
+    Index i(hfp.getStopWordList(), hfp.getCategoryMap());
 
     i.addWord("dinosaur", 5);
     i.addWord("mark", 6);
@@ -120,7 +120,7 @@ void testLevel1()
 
     l.printList(cout);
 
-    MyIndex i(l);
+    Index i(l);
 
     cout << "Adding words" << endl;
     i.addWord("dinosaur", 5);

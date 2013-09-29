@@ -11,7 +11,7 @@ using namespace std;
 
 #include "Index.h"
 
-void MyIndex::resize()
+void Index::resize()
 {
 	if (DEBUGl3)
 		cout << "Resizing index from " << wordListCapacity << " to "
@@ -25,7 +25,7 @@ void MyIndex::resize()
 	wordListCapacity += 10;
 }
 
-void MyIndex::sortIdx()
+void Index::sortIdx()
 {
 	for (int i = 0; i < wordListSize - 1; i++)
 	{
@@ -42,14 +42,14 @@ void MyIndex::sortIdx()
 	}
 }
 
-MyIndex::MyIndex()
+Index::Index()
 {
 	wordListSize = 0;
 	wordListCapacity = 10;
 	wordList = new Word*[wordListCapacity];
 }
 
-MyIndex::MyIndex(StopWordList& swlarg, CategoryMap& cm) :
+Index::Index(StopWordList& swlarg, CategoryMap& cm) :
 		swl(swlarg), catmap(cm)
 {
 	wordListSize = 0;
@@ -57,7 +57,7 @@ MyIndex::MyIndex(StopWordList& swlarg, CategoryMap& cm) :
 	wordList = new Word*[wordListCapacity];
 }
 
-MyIndex::MyIndex(StopWordList& swlarg) :
+Index::Index(StopWordList& swlarg) :
 		swl(swlarg), catmap(*(new CategoryMap))
 {
 	wordListSize = 0;
@@ -65,21 +65,21 @@ MyIndex::MyIndex(StopWordList& swlarg) :
 	wordList = new Word*[wordListCapacity];
 }
 
-MyIndex::MyIndex(const MyIndex&)
+Index::Index(const Index&)
 {
 	wordList = NULL;
 	wordListCapacity = 0;
 	wordListSize = 0;
 }
 
-MyIndex::~MyIndex()
+Index::~Index()
 {
 	for (int i = 0; i < wordListSize; i++)
 		delete wordList[i];
 	delete[] wordList;
 }
 
-void MyIndex::addWord(char str[], int page, bool cat)
+void Index::addWord(char str[], int page, bool cat)
 {
 	if (wordListSize == wordListCapacity)
 		resize();
@@ -133,7 +133,7 @@ void MyIndex::addWord(char str[], int page, bool cat)
 	}
 }
 
-bool MyIndex::isInIndex(char str[])
+bool Index::isInIndex(char str[])
 {
 	for (int i = 0; i < wordListSize; i++)
 	{
@@ -143,7 +143,7 @@ bool MyIndex::isInIndex(char str[])
 	return false;
 }
 
-void MyIndex::printList(ostream& out)
+void Index::printList(ostream& out)
 {
 	//sort the index
 	sortIdx();

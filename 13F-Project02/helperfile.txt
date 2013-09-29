@@ -1,0 +1,10 @@
+[stop]
+an the who I that a
+am is not
+[category]
+apple = iphone ipad macbook
+automobile = car truck toyota ford
+x = b  c d     e f  g     h
+b =    d e   f g
+thisisthebestclasseveryofwhatdoyouaaaaaa = hello
+only = on one of individual

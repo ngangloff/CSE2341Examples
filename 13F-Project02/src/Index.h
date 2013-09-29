@@ -11,6 +11,11 @@ using namespace std;
 #ifndef INDEX_H
 #define INDEX_H
 
+/**
+ * Index represents the main index of this app.  It holds a list of
+ * word objects.
+ */
+
 class Index
 {
 private:
@@ -39,12 +44,12 @@ private:
 
 public:
 
-	Index(StopWordList& swlarg);
-
-	Index(StopWordList& swlarg, CategoryMap& cm);
-
+	/**
+	 * Constructors & Destructor
+	 */
 	Index();
-
+	Index(StopWordList& swlarg);
+	Index(StopWordList& swlarg, CategoryMap& cm);
 	~Index();
 
 	/**
@@ -53,6 +58,9 @@ public:
 	 */
 	void addWord(char str[], int page, bool cat = false);
 
+	/**
+	 * Returns true if the parameter word (str) is in the index.
+	 */
 	bool isInIndex(char str[]);
 
 	/**
@@ -62,7 +70,5 @@ public:
 	void printList(ostream& out);
 
 };
-
-
 
 #endif

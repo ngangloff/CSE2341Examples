@@ -8,6 +8,37 @@
 
 #include "HelperFileParser.h"
 
+/**
+ * CONSTRUCTORS
+ */
+
+HelperFileParser::HelperFileParser()
+{
+	helperFile = NULL;
+	categoriesDone = stopWordsDone = false;
+}
+
+HelperFileParser::HelperFileParser(char* fileName)
+{
+	stopWordsDone = categoriesDone = false;
+	helperFile = new char[strlen(fileName) + 1];
+	strcpy(helperFile, fileName);
+	file.open(helperFile);
+	if (!file)
+		cerr << "Cannot file Helper File" << endl;
+}
+
+/**
+ * DESTRUCTOR
+ */
+HelperFileParser::~HelperFileParser()
+{
+	file.close();
+}
+
+/**
+ * PRIVATE MEMBER FUNCTIONS
+ */
 void HelperFileParser::parseStop()
 {
 	if (DEBUGl1)
@@ -114,30 +145,18 @@ void HelperFileParser::parseCategory()
 	}
 }
 
-HelperFileParser::HelperFileParser()
-{
-	helperFile = NULL;
-	categoriesDone = stopWordsDone = false;
-}
-
-HelperFileParser::HelperFileParser(char* fileName)
-{
-	stopWordsDone = categoriesDone = false;
-	helperFile = new char[strlen(fileName) + 1];
-	strcpy(helperFile, fileName);
-	file.open(helperFile);
-	if (!file)
-		cerr << "Cannot file Helper File" << endl;
-}
-
-HelperFileParser::~HelperFileParser()
-{
-	file.close();
-}
+/**
+ * PUBLIC MEMBER FUNCTIONS
+ */
 
 StopWordList& HelperFileParser::getStopWordList()
 {
 	return stopwords;
+}
+
+CategoryMap& HelperFileParser::getCategoryMap()
+{
+	return map;
 }
 
 bool HelperFileParser::isFileOpen()
@@ -145,6 +164,11 @@ bool HelperFileParser::isFileOpen()
 	return file.is_open();
 }
 
+/**
+ * This method is highly coupled to parseStop and parseCategory.
+ *
+ * TODO: consider refactoring.
+ */
 void HelperFileParser::parseFile()
 {
 	char temp[12];
@@ -160,7 +184,4 @@ void HelperFileParser::parseFile()
 	}
 }
 
-CategoryMap& HelperFileParser::getCategoryMap()
-{
-	return map;
-}
+

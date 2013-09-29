@@ -9,6 +9,26 @@
 #include "CategoryMap.h"
 
 
+/**
+ * CONSTRUCTORS
+ */
+CategoryMap::CategoryMap()
+{
+	subCategories = new char*[10];
+	categories = new char*[10];
+	size = 0;
+	capacity = 10;
+}
+
+CategoryMap::CategoryMap(const CategoryMap& rhs)
+{
+	copyContents(rhs);
+}
+
+/**
+ * PRIVATE MEMBER FUNCTIONS
+ */
+
 void CategoryMap::copyContents(const CategoryMap& cm)
 {
 	size = cm.size;
@@ -30,6 +50,7 @@ void CategoryMap::resize()
 		cout << "Resizing the Category Map from " << capacity << " to "
 				<< (capacity + 10) << endl;
 
+	//need to resize both the category and subcategories.
 	char** tempSubCat;
 	char** tempCat;
 	tempSubCat = new char*[capacity + 10];
@@ -46,19 +67,11 @@ void CategoryMap::resize()
 	categories = tempCat;
 }
 
-CategoryMap::CategoryMap(const CategoryMap& rhs)
-{
-	copyContents(rhs);
-}
+//TODO need a destructor for CategoryMap
 
-CategoryMap::CategoryMap()
-{
-	subCategories = new char*[10];
-	categories = new char*[10];
-	size = 0;
-	capacity = 10;
-}
-
+/**
+ * OPERATORS
+ */
 CategoryMap& CategoryMap::operator =(const CategoryMap& rhs)
 {
 	if (this != &rhs)
@@ -70,8 +83,16 @@ CategoryMap& CategoryMap::operator =(const CategoryMap& rhs)
 	return *this;
 }
 
+
+/**
+ * MEMBER FUNCTIONS
+ */
 char* CategoryMap::contains(char word[])
 {
+
+	//searches through each of the subcat words.
+	//returns the category that the param word goes with.
+	//Returns NULL if the word wasn't found
 	char* tempCopy = NULL;
 	for (int i = 0; i < size; i++)
 	{
@@ -83,6 +104,10 @@ char* CategoryMap::contains(char word[])
 		}
 	}
 	return tempCopy;
+
+	/**
+	 * TODO: Fix this - kind of a kludge.
+	 */
 }
 
 void CategoryMap::addEntry(char* subcat, char* cat)
@@ -90,12 +115,15 @@ void CategoryMap::addEntry(char* subcat, char* cat)
 	if (size == capacity)
 		resize();
 
+	//adds the cateogory and subcategory to the
+	//next avail location in the arrays.
 	subCategories[size] = new char[strlen(subcat) + 1];
 	categories[size] = new char[strlen(cat) + 1];
 	strcpy(subCategories[size], subcat);
 	strcpy(categories[size], cat);
 	size++;
 }
+
 
 void CategoryMap::printmap()
 {

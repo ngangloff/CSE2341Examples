@@ -5,42 +5,14 @@
  *      Author: mark
  */
 
-
 #include <cstdio>
 using namespace std;
 
 #include "Index.h"
 
-void Index::resize()
-{
-	if (DEBUGl3)
-		cout << "Resizing index from " << wordListCapacity << " to "
-				<< (wordListCapacity + 10) << endl;
-
-	Word** temp = new Word*[wordListCapacity + 10];
-	for (int i = 0; i < wordListSize; i++)
-		temp[i] = wordList[i];
-	delete[] wordList;
-	wordList = temp;
-	wordListCapacity += 10;
-}
-
-void Index::sortIdx()
-{
-	for (int i = 0; i < wordListSize - 1; i++)
-	{
-		int curSmallest = i;
-		for (int j = i + 1; j < wordListSize; j++)
-			if (*wordList[j] < *wordList[curSmallest])
-				curSmallest = j;
-		if (curSmallest != i)
-		{
-			Word* temp = wordList[i];
-			wordList[i] = wordList[curSmallest];
-			wordList[curSmallest] = temp;
-		}
-	}
-}
+/**
+ * CONSTRUCTORS
+ */
 
 Index::Index()
 {
@@ -72,6 +44,10 @@ Index::Index(const Index&)
 	wordListSize = 0;
 }
 
+/**
+ * DESTRUCTOR
+ */
+
 Index::~Index()
 {
 	for (int i = 0; i < wordListSize; i++)
@@ -79,6 +55,43 @@ Index::~Index()
 	delete[] wordList;
 }
 
+/**
+ * PRIVATE METHODS
+ */
+void Index::resize()
+{
+	if (DEBUGl3)
+		cout << "Resizing index from " << wordListCapacity << " to "
+				<< (wordListCapacity + 10) << endl;
+
+	Word** temp = new Word*[wordListCapacity + 10];
+	for (int i = 0; i < wordListSize; i++)
+		temp[i] = wordList[i];
+	delete[] wordList;
+	wordList = temp;
+	wordListCapacity += 10;
+}
+
+void Index::sortIdx()
+{
+	for (int i = 0; i < wordListSize - 1; i++)
+	{
+		int curSmallest = i;
+		for (int j = i + 1; j < wordListSize; j++)
+			if (*wordList[j] < *wordList[curSmallest])
+				curSmallest = j;
+		if (curSmallest != i)
+		{
+			Word* temp = wordList[i];
+			wordList[i] = wordList[curSmallest];
+			wordList[curSmallest] = temp;
+		}
+	}
+}
+
+/**
+ * PUBLIC MEMBER FUNCTIONS
+ */
 void Index::addWord(char str[], int page, bool cat)
 {
 	if (wordListSize == wordListCapacity)
@@ -135,6 +148,7 @@ void Index::addWord(char str[], int page, bool cat)
 
 bool Index::isInIndex(char str[])
 {
+	//Iterates through the index to see if str is present.
 	for (int i = 0; i < wordListSize; i++)
 	{
 		if (wordList[i]->equals(str))

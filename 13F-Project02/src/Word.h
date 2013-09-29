@@ -1,3 +1,11 @@
+/*
+ * Word.h
+ *
+ *  Created on: Sep 29, 2013
+ *      Author: Mark Fontenot
+ */
+
+
 
 #include <cstring>
 #include <ctype.h>
@@ -9,6 +17,11 @@ using namespace std;
 
 #ifndef WORD_H
 #define WORD_H
+
+/**
+ * The Word class represents a word in the book and the associated list of
+ * pages on which it occurs.
+ */
 
 class Word
 {
@@ -23,7 +36,7 @@ private:
 
 public:
 	/**
-	 * This constructor constructs the word
+	 * Constructs the word
 	 * with the parameter value and initializes
 	 * the pageList
 	 */

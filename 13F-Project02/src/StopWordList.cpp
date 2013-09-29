@@ -2,13 +2,11 @@
  * StopWordList.cpp
  *
  *  Created on: Sep 29, 2013
- *      Author: mark
+ *      Author: Mark Fontenot
  */
 
 
 #include "StopWordList.h"
-
-
 
 
 void StopWordList::resize()

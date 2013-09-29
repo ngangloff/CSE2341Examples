@@ -32,22 +32,43 @@ private:
 
 public:
 
+	/**
+	 * Default Constructor
+	 */
 	CategoryMap();
 
+
+	/**
+	 * Copy c'tor
+	 */
 	CategoryMap(const CategoryMap& rhs);
 
+	/**
+	 * operator =.  Makes sure that deep copy happens.
+	 *
+	 * TODO:  Does this really need to be public? Do we really want to allow copying?
+	 */
 	CategoryMap& operator =(const CategoryMap& rhs);
 
 	/**
 	 * returns the category associated with a particular
 	 * subcategory
 	 *
-	 * potential source of memory leak
+	 * TODO:  This is a memory leak looking for a place to happen.
 	 */
 	char* contains(char word[]);
 
+
+	/**
+	 * Adds an entry to the category map
+	 */
 	void addEntry(char* subcat, char* cat);
 
+	/**
+	 * prints the map to std out.  Mostly just for debugging purposes.
+	 *
+	 * TODO:  Could refactor this to print to a parameter stream
+	 */
 	void printmap();
 
 };

@@ -2,12 +2,49 @@
  * Word.cpp
  *
  *  Created on: Sep 29, 2013
- *      Author: mark
+ *      Author: Mark Fontenot
  */
 
 
 #include "Word.h"
 
+
+/**
+ * CONSTRUCTORS
+ */
+Word::Word(char* input)
+{
+	string = new char[strlen(input) + 1];
+	strcpy(string, input);
+	pageList = new int[10];
+	pageSize = 0;
+	pageCap = 10;
+}
+
+Word::Word(const Word& rhs)
+{
+	string = new char[strlen(rhs.string) + 1];
+	strcpy(string, rhs.string);
+	pageList = new int[rhs.pageCap];
+	for (int i = 0; i < rhs.pageCap; i++)
+		pageList[i] = rhs.pageList[i];
+	pageCap = rhs.pageCap;
+	pageSize = rhs.pageSize;
+}
+
+/**
+ * DESTRUCTOR
+ */
+
+Word::~Word()
+{
+	delete[] string;
+	delete[] pageList;
+}
+
+/**
+ * PRIVATE METHODS
+ */
 void Word::resizePageList()
 {
 	if (DEBUGl3)
@@ -22,31 +59,9 @@ void Word::resizePageList()
 	pageList = temp;
 }
 
-Word::Word(const Word& rhs)
-{
-	string = new char[strlen(rhs.string) + 1];
-	strcpy(string, rhs.string);
-	pageList = new int[rhs.pageCap];
-	for (int i = 0; i < rhs.pageCap; i++)
-		pageList[i] = rhs.pageList[i];
-	pageCap = rhs.pageCap;
-	pageSize = rhs.pageSize;
-}
-
-Word::Word(char* input)
-{
-	string = new char[strlen(input) + 1];
-	strcpy(string, input);
-	pageList = new int[10];
-	pageSize = 0;
-	pageCap = 10;
-}
-
-Word::~Word()
-{
-	delete[] string;
-	delete[] pageList;
-}
+/**
+ * OVERLOADED OPERATORS
+ */
 
 Word& Word::operator =(const Word& rhs)
 {
@@ -65,6 +80,14 @@ Word& Word::operator =(const Word& rhs)
 	return *this;
 }
 
+bool Word::operator <(const Word& rhs)
+{
+	return (strcmp(this->string, rhs.string) < 0);
+}
+
+/**
+ * OTHER MEMBER FUNCTIONS
+ */
 bool Word::equals(char* temp)
 {
 	if (strcmp(string, temp) == 0)
@@ -102,7 +125,12 @@ int Word::getNumPages()
 
 void Word::getPageList(int* tempPageList)
 {
+
+	//Strictly speaking, this breaks the rules of the project handout
+	//but you can see how the sort algo works.
 	sort(pageList, pageList + pageSize);
+
+	//copying contents into the parameter array.
 	for (int i = 0; i < pageSize; i++)
 		tempPageList[i] = pageList[i];
 }
@@ -114,6 +142,9 @@ char* Word::getWord()
 	return temp;
 }
 
+/**
+ * STATIC METHOD
+ */
 void Word::toUpper(char* str)
 {
 	int len = strlen(str);
@@ -121,8 +152,5 @@ void Word::toUpper(char* str)
 		str[i] = toupper(str[i]);
 }
 
-bool Word::operator <(const Word& rhs)
-{
-	return (strcmp(this->string, rhs.string) < 0);
-}
+
 

@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "Debug.h"
+#include <cstring>
 
 #ifndef CATEGORYMAP_H
 #define CATEGORYMAP_H

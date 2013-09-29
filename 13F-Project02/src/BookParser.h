@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
+
 
 #include "Index.h"
 #include "Debug.h"

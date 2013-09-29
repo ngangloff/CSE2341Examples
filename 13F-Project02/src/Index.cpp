@@ -6,6 +6,9 @@
  */
 
 
+#include <cstdio>
+using namespace std;
+
 #include "Index.h"
 
 void MyIndex::resize()

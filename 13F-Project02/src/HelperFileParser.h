@@ -4,6 +4,7 @@ using namespace std;
 #include "Debug.h"
 #include "StopWordList.h"
 #include "CategoryMap.h"
+#include "Word.h"
 
 #ifndef HELPERFILEPARSER_H
 #define HELPERFILEPARSER_H

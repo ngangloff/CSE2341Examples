@@ -2,6 +2,7 @@
 #include <cstring>
 #include <ctype.h>
 #include <algorithm>
+#include <iostream>
 #include "Debug.h"
 
 using namespace std;
